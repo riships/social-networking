@@ -9,11 +9,14 @@ export default class User {
         this.email = email;
         this.password = password;
     }
+    static getAllUsers() {
+        return users;
+    }
 
     static checkExisting(email) {
         let userExist = false
         if (this.users.find(user => user.email === email)) {
-           userExist =  true
+            userExist = true
         }
         return userExist;
     }
@@ -29,10 +32,10 @@ export default class User {
         } catch (error) {
             throw new Error('Error signing up user');
         }
-    } 
+    }
     static async userLogin(data) {
         const { email, password } = data;
-        const user = this.users.find(user => user.email === email);
+        const user = this.users.find(user => user.email === email);       
 
         if (!user) {
             return false; // User not found
